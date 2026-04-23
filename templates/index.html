@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amazon Price Tracker - Never Lose a Sale Again</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; }
+
+        /* NAVBAR */
+        .navbar {
+            background: #232f3e;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 { color: #ff9900; font-size: 20px; }
+        .navbar div a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        .navbar .btn-signup {
+            background: #ff9900;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #232f3e 0%, #37475a 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero h2 span { color: #ff9900; }
+        .hero p {
+            font-size: 20px;
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; }
+        .btn-primary {
+            background: #ff9900;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            border: 2px solid white;
+        }
+        .btn-primary:hover { background: #e68900; }
+
+        /* FEATURES */
+        .features {
+            padding: 80px 50px;
+            background: #f9f9f9;
+            text-align: center;
+        }
+        .features h3 {
+            font-size: 36px;
+            color: #232f3e;
+            margin-bottom: 10px;
+        }
+        .features p.subtitle {
+            color: #888;
+            margin-bottom: 50px;
+            font-size: 16px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .feature-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        .feature-card .icon { font-size: 40px; margin-bottom: 15px; }
+        .feature-card h4 { color: #232f3e; margin-bottom: 10px; font-size: 18px; }
+        .feature-card p { color: #888; font-size: 14px; line-height: 1.6; }
+
+        /* HOW IT WORKS */
+        .how {
+            padding: 80px 50px;
+            text-align: center;
+        }
+        .how h3 { font-size: 36px; color: #232f3e; margin-bottom: 10px; }
+        .how p.subtitle { color: #888; margin-bottom: 50px; }
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .step { flex: 1; }
+        .step-number {
+            background: #ff9900;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        .step h4 { color: #232f3e; margin-bottom: 8px; }
+        .step p { color: #888; font-size: 14px; }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #232f3e, #37475a);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .cta h3 { font-size: 36px; margin-bottom: 15px; }
+        .cta p { color: #aaa; margin-bottom: 35px; font-size: 18px; }
+
+        /* FOOTER */
+        .footer {
+            background: #232f3e;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <h1>🛒 Amazon Price Tracker</h1>
+        <div>
+            <a href="/login">Login</a>
+            <a href="/signup" class="btn-signup">Get Started Free</a>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h2>Never Lose a Sale Because<br>of <span>Pricing</span> Again</h2>
+        <p>Automatically track your Amazon competitors prices every morning and stay one step ahead.</p>
+        <div class="hero-buttons">
+            <a href="/signup" class="btn-primary">Get Started Free →</a>
+            <a href="/login" class="btn-secondary">Login</a>
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features">
+        <h3>Everything You Need</h3>
+        <p class="subtitle">Powerful tools to keep your Amazon business competitive</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">📊</div>
+                <h4>Real-Time Price Tracking</h4>
+                <p>Pull live prices directly from Amazon every morning automatically.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📧</div>
+                <h4>Daily Email Reports</h4>
+                <p>Get a beautiful price report delivered to your inbox every morning.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">⚡</div>
+                <h4>Instant Dashboard</h4>
+                <p>See all your competitor prices in one clean dashboard at a glance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🏆</div>
+                <h4>Track Any Competitor</h4>
+                <p>Add unlimited competitors and track all of them simultaneously.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔔</div>
+                <h4>Price Alerts</h4>
+                <p>Get instantly notified when a competitor undercuts your price.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📈</div>
+                <h4>Price History</h4>
+                <p>See how competitor prices have changed over time.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="how">
+        <h3>How It Works</h3>
+        <p class="subtitle">Up and running in under 2 minutes</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h4>Create Account</h4>
+                <p>Sign up free and create your account in seconds.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h4>Add Your Products</h4>
+                <p>Enter your Amazon product and competitor ASINs.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h4>Get Reports</h4>
+                <p>Receive daily price reports every morning automatically.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <h3>Ready to Stay Ahead?</h3>
+        <p>Join hundreds of Amazon sellers tracking their competitors today.</p>
+        <a href="/signup" class="btn-primary">Get Started Free →</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 Amazon Price Tracker. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
