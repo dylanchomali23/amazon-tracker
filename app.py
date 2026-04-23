@@ -43,11 +43,15 @@ def get_price(asin):
     except:
         return "Not found", 0
 
+
 @app.route("/")
 def home():
     if "user_id" not in session:
         return redirect(url_for("landing"))
     user = User.query.get(session["user_id"])
+    if user is None:
+        session.pop("user_id", None)
+        return redirect(url_for("landing"))
     today = str(date.today())
     if user.last_updated != today:
         competitors = json.loads(user.competitors)
