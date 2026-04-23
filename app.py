@@ -13,7 +13,6 @@ db = SQLAlchemy(app)
 
 API_KEY = "DBC92EDA5338436CB8CD4645FF87F501"
 
-# Database models
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True, nullable=False)
@@ -47,11 +46,9 @@ def get_price(asin):
 @app.route("/")
 def home():
     if "user_id" not in session:
-        return redirect(url_for("login"))
+        return redirect(url_for("landing"))
     user = User.query.get(session["user_id"])
     today = str(date.today())
-
-    # Only fetch new prices if not already fetched today
     if user.last_updated != today:
         competitors = json.loads(user.competitors)
         results = []
@@ -66,9 +63,11 @@ def home():
         db.session.commit()
     else:
         results = json.loads(user.cached_results)
-
     return render_template("dashboard.html", results=results, user=user, date=today)
 
+@app.route("/landing")
+def landing():
+    return render_template("index.html")
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -114,6 +113,7 @@ def settings():
             if name and asin:
                 competitors.append({"name": name, "asin": asin})
         user.competitors = json.dumps(competitors)
+        user.last_updated = ""
         db.session.commit()
         return redirect(url_for("home"))
     competitors = json.loads(user.competitors)
@@ -122,7 +122,7 @@ def settings():
 @app.route("/logout")
 def logout():
     session.pop("user_id", None)
-    return redirect(url_for("login"))
+    return redirect(url_for("landing"))
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
