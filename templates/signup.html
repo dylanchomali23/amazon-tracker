@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Amazon Price Tracker - Login</title>
+    <title>Amazon Price Tracker - Sign Up</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -20,9 +20,20 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             text-align: center;
         }
-        .logo { font-size: 40px; margin-bottom: 10px; }
-        h1 { color: #232f3e; font-size: 24px; margin-bottom: 5px; }
-        p.subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+        .logo {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #232f3e;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        p.subtitle {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
         input {
             width: 100%;
             padding: 12px 15px;
@@ -32,7 +43,10 @@
             font-size: 15px;
             transition: border 0.3s;
         }
-        input:focus { outline: none; border-color: #ff9900; }
+        input:focus {
+            outline: none;
+            border-color: #ff9900;
+        }
         button {
             width: 100%;
             padding: 13px;
@@ -47,8 +61,12 @@
             transition: background 0.3s;
         }
         button:hover { background: #e68900; }
-        .signup-link { margin-top: 20px; color: #888; font-size: 14px; }
-        .signup-link a { color: #ff9900; text-decoration: none; }
+        .login-link {
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+        .login-link a { color: #ff9900; text-decoration: none; }
         .error {
             background: #ffe0e0;
             color: #cc0000;
@@ -62,8 +80,8 @@
 <body>
     <div class="box">
         <div class="logo">🛒</div>
-        <h1>Welcome Back</h1>
-        <p class="subtitle">Login to your price tracker dashboard</p>
+        <h1>Create Account</h1>
+        <p class="subtitle">Start tracking your Amazon prices today</p>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 <div class="error">{{ messages[0] }}</div>
@@ -72,9 +90,9 @@
         <form method="POST">
             <input type="email" name="email" placeholder="Email address" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Login</button>
+            <button type="submit">Create Account</button>
         </form>
-        <p class="signup-link">Don't have an account? <a href="/signup">Sign up free</a></p>
+        <p class="login-link">Already have an account? <a href="/login">Login</a></p>
     </div>
 </body>
 </html>

@@ -3,11 +3,10 @@
 <head>
     <title>Amazon Price Tracker - Dashboard</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
         }
         .navbar {
             background-color: #232f3e;
@@ -17,69 +16,121 @@
             justify-content: space-between;
             align-items: center;
         }
-        .navbar h1 {
-            color: #ff9900;
-            margin: 0;
-        }
-        .navbar a {
+        .navbar h1 { color: #ff9900; margin: 0; font-size: 22px; }
+        .navbar div a {
             color: white;
             text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
         }
-        .container {
+        .navbar div a:hover { color: #ff9900; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .welcome {
+            background: linear-gradient(135deg, #232f3e, #37475a);
+            color: white;
             padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: white;
-            border-radius: 10px;
+        .welcome h2 { font-size: 24px; margin-bottom: 5px; }
+        .welcome p { color: #aaa; font-size: 14px; }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             overflow: hidden;
         }
+        .card-header {
+            padding: 20px 25px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header h3 { color: #232f3e; font-size: 18px; }
+        .date { color: #888; font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; }
         th {
-            background-color: #232f3e;
-            color: white;
-            padding: 15px;
+            background-color: #f8f8f8;
+            color: #555;
+            padding: 15px 20px;
             text-align: left;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        td {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
+        td { padding: 15px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: #fafafa; }
         .cheaper {
-            color: green;
+            background: #e6f4ea;
+            color: #1a7f37;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
             font-weight: bold;
         }
         .warning {
-            color: red;
+            background: #fce8e8;
+            color: #cc0000;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .me-row td { background: #fffbf0; font-weight: bold; }
+        .settings-btn {
+            background: #ff9900;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 13px;
             font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <h1>🛒 Amazon Price Tracker</h1>
-        <a href="/logout">Logout</a>
+        <h1>🛒 Amazon Tracker</h1>
+        <div>
+            <a href="/settings">⚙️ Settings</a>
+            <a href="/logout">Logout</a>
+        </div>
     </div>
     <div class="container">
-        <h2>Today's Price Report</h2>
-        <table>
-            <tr>
-                <th>Seller</th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Difference</th>
-                <th>Status</th>
-            </tr>
-            {% for seller, product, price, difference, status in results %}
-            <tr>
-                <td>{{ seller }}</td>
-                <td>{{ product }}</td>
-                <td>${{ price }}</td>
-                <td>{{ difference }}</td>
-                <td class="{{ 'cheaper' if 'cheaper' in status else 'warning' }}">{{ status }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+        <div class="welcome">
+            <h2>Good morning! 👋</h2>
+            <p>Here's your price comparison report for today</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>📊 Price Comparison</h3>
+                <span class="date">{{ date }}</span>
+            </div>
+            <table>
+                <tr>
+                    <th>Seller</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Difference</th>
+                    <th>Status</th>
+                </tr>
+                {% for seller, product, price, difference, status in results %}
+                <tr class="{{ 'me-row' if seller == 'ME' else '' }}">
+                    <td>{{ seller }}</td>
+                    <td>{{ product }}</td>
+                    <td>${{ price }}</td>
+                    <td>{{ difference }}</td>
+                    <td>
+                        {% if seller != 'ME' %}
+                        <span class="{{ 'cheaper' if 'cheaper' in status else 'warning' }}">{{ status }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 </body>
 </html>
