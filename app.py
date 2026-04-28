@@ -8,6 +8,7 @@ from datetime import date
 
 app = Flask(__name__)
 app.secret_key = "amazontrackerkey123"
+app.config['CONTENT_SECURITY_POLICY'] = {}
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
 db = SQLAlchemy(app)
 
@@ -43,15 +44,11 @@ def get_price(asin):
     except:
         return "Not found", 0
 
-
 @app.route("/")
 def home():
     if "user_id" not in session:
         return redirect(url_for("landing"))
     user = User.query.get(session["user_id"])
-    if user is None:
-        session.pop("user_id", None)
-        return redirect(url_for("landing"))
     today = str(date.today())
     if user.last_updated != today:
         competitors = json.loads(user.competitors)
@@ -124,6 +121,14 @@ def settings():
     return render_template("settings.html", user=user, competitors=competitors)
 
 @app.route("/logout")
+@app.route("/refresh")
+def refresh():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    user = User.query.get(session["user_id"])
+    user.last_updated = ""
+    db.session.commit()
+    return redirect(url_for("home"))
 def logout():
     session.pop("user_id", None)
     return redirect(url_for("landing"))
